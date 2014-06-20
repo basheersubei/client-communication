@@ -1,0 +1,22 @@
+<h1>Listing comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>post_id</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        <td><%= comment.post_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
