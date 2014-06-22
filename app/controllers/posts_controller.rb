@@ -23,7 +23,7 @@ def create
   @post = Post.new(post_params)
 
   @post.save
-  redirect_to progress_path
+  redirect_to users_path
 end
 
 

@@ -1,10 +1,11 @@
 ClientCommunication::Application.routes.draw do
-  root 'main#index'
+  root 'main#root'
 
 
   get '/progress/:url_hash', to: 'posts#progress', as: 'progress'
   resources :posts
-  resources :comments
+  resources :comments, except: [:create]
+  match 'feedback', to: 'comments#feedback', via: [:post]
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

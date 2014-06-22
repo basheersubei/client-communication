@@ -11,11 +11,11 @@ def new
 
 end
 
-def create
+def feedback
   @post = Post.find(params[:comment][:post_id])
   @comment = @post.comments.create(comment_params)
 
-  redirect_to posts_path
+  redirect_to root_path
 end
 
 
