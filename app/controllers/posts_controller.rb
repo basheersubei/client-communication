@@ -1,9 +1,16 @@
 class PostsController < ApplicationController
 
 def index
-  @posts = Post.all
-  @comments = Comment.all
-  @users = User.all
+
+  @user = User.find_by(url_hash: params[:url_hash])
+  
+  if @user == nil
+    redirect_to users_path and return
+  end
+
+  @posts = @user.posts
+  # @comments = Comment.all
+  # @users = User.all
 end
 
 def new
