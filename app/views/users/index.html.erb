@@ -6,6 +6,7 @@
       <th>User ID</th>
       <th>User Name</th>
       <th>URL Hash</th>
+      <th>Admin?</th>
     </tr>
   </thead>
 
@@ -15,6 +16,12 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.url_hash %></td>
+        <td><% if user.admin? %>
+              <%= 'true' %>
+            <% else %>
+              <%= 'false' %>
+              <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
