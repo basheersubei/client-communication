@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   USERS = { "dhh" => "secret" }
  
-  before_action :authenticate
+  before_action :authenticate, except: [:progress]
  
   private
  

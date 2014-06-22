@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
 
-def index
+def progress
 
   @user = User.find_by(url_hash: params[:url_hash])
   
   if @user == nil
-    redirect_to users_path and return
+    redirect_to root_path and return
   end
 
   @posts = @user.posts
@@ -23,7 +23,7 @@ def create
   @post = Post.new(post_params)
 
   @post.save
-  redirect_to posts_path
+  redirect_to progress_path
 end
 
 

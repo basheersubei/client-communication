@@ -1,8 +1,8 @@
 ClientCommunication::Application.routes.draw do
-  # root 'posts#index'
+  root 'main#index'
 
 
-  get '/progress/:url_hash', to: 'posts#index'
+  get '/progress/:url_hash', to: 'posts#progress', as: 'progress'
   resources :posts
   resources :comments
   resources :users
