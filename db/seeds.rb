@@ -14,18 +14,19 @@ users = User.create(
   ]
 )
 
+first_client = User.find_by(name: 'FirstClient')
+
+
 posts = Post.create(
 	[
-		{ title: 'Teh First Post', content: 'Lorem something something?'},
-		{ title: 'The secund post', content: 'Any suggestions?'}
+		{ title: 'Teh First Post', content: 'Lorem something something?', user_id: first_client.id },
+		{ title: 'The secund post', content: 'Any suggestions?', user_id: first_client.id }
 	]
 )
 
-first_client = User.find_by(name: 'FirstClient')
-
 comments = Comment.create(
 	[
-		{ post_id: 1, content: 'Lorem ipsum, you dumbass!', user_id: first_client.id },
-		{ post_id: 2, content: 'Take a fu**ing english class, you dumbass!', user_id: first_client.id }
+		{ post_id: 1, content: 'Lorem ipsum, you dumbass!' },
+		{ post_id: 2, content: 'Take a fu**ing english class, you dumbass!' }
 	]
 )
