@@ -22,7 +22,7 @@
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
             <%= comment.content %> |
-            <%= post.user_id.name %> <br/>
+            <%= @users.find(post.user_id).name %> <br/>
             <% end %>
         </td>
         
