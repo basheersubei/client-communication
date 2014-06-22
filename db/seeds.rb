@@ -9,8 +9,8 @@
 
 users = User.create( 
   [ 
-    { name: 'Admin' },
-    { name: 'FirstClient' },
+    { name: 'Admin', url_hash: 'd4cef3fc5ee68f3aa63197575a724294'},
+    { name: 'FirstClient', url_hash: '90e26ff0d8731959fe913dc2952880ce' },
   ]
 )
 

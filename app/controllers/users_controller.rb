@@ -14,6 +14,8 @@ end
 def create
   @user = User.new(user_params)
 
+  @user.url_hash = SecureRandom.hex
+  
   @user.save
   redirect_to users_path
 end
