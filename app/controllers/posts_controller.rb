@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-
+   http_basic_authenticate_with name: "dhh", password: "secret", except: :index
+   
 def index
 
   @user = User.find_by(url_hash: params[:url_hash])
