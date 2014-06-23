@@ -33,4 +33,8 @@ ClientCommunication::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  ENV['ADMIN_LOGIN']="dhh"
+  ENV['ADMIN_PASS']="d2e3450fad5cd22710ea854814378d59"
+
 end

@@ -4,14 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   
-  USERS = { "dhh" => "secret" }
- 
+  # USERS = { "dhh" => "secret" }
+  REALM = "phi"
+  USERS = { ENV['ADMIN_LOGIN'] => ENV['ADMIN_PASS'] }  #ha1 digest password
+
+
   before_action :authenticate, except: [:progress, :root, :feedback]
  
   private
  
     def authenticate
-      authenticate_or_request_with_http_digest do |username|
+      authenticate_or_request_with_http_digest(REALM) do |username|
         USERS[username]
       end
     end

@@ -26,4 +26,7 @@ ClientCommunication::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  ENV['ADMIN_LOGIN']="dhh"
+  ENV['ADMIN_PASS']="d2e3450fad5cd22710ea854814378d59"
 end
