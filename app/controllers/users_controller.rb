@@ -17,7 +17,7 @@ def create
   @user.url_hash = SecureRandom.hex
   
   @user.save
-  redirect_to users_path
+  redirect_to control_panel_path
 end
 
 

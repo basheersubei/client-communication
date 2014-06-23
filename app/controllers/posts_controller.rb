@@ -22,14 +22,15 @@ end
 def create
   @post = Post.new(post_params)
 
+  @user = User.find_by(url_hash: params[:post][:url_hash])
   @post.save
-  redirect_to users_path
+  redirect_to control_panel_show_path(@user.url_hash)
 end
 
 
 private
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :user_id)
   end
 
 

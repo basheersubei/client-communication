@@ -1,6 +1,8 @@
 ClientCommunication::Application.routes.draw do
   root 'main#root'
 
+  get '/control_panel', to: 'control_panel#index', as: 'control_panel'
+  get '/control_panel/:url_hash', to: 'control_panel#show', as: 'control_panel_show'
 
   get '/progress/:url_hash', to: 'posts#progress', as: 'progress'
   resources :posts

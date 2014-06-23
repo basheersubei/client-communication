@@ -7,7 +7,6 @@
       <th>Title</th>
       <th>Content</th>
       <th>Comment ID | Comment | Commenter</th>
-      <th> New Comment </th>
     </tr>
   </thead>
 
@@ -25,31 +24,6 @@
             <%= @user.name %> <br/>
             <% end %>
         </td>
-        
-        <td>
-            <%= form_for :comment, :url => feedback_path do |f| %>
-            
-            <p>
-              Comment <%= f.label :content %><br>
-              <%= f.text_area :content %>
-            </p>
-
-
-
-            
-            <%= f.hidden_field :post_id, :value => post.id %>
-            
-
-            
-            <%= f.hidden_field :url_hash, :value => @user.url_hash %>
-            
-
-            <p>
-              <%= f.submit %>
-            </p>
-          <% end %>
-
-        </td>
 
       </tr>
     <% end %>
@@ -57,4 +31,24 @@
 </table>
 
 <br>
+<p>Create New Post</p>
 
+<%= form_for :post, url: posts_path do |f| %>
+  <p>
+    Post <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    Post <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+
+  <%= f.hidden_field :url_hash, :value => @user.url_hash %>
+
+  <%= f.hidden_field :user_id, :value => @user.id %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

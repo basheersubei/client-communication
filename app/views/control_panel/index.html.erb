@@ -1,0 +1,36 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>User Name</th>
+      <th>URL Hash</th>
+      <th>Admin?</th>
+      <th>Link to progress page</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.url_hash %></td>
+        <td><% if user.admin? %>
+              <%= 'true' %>
+            <% else %>
+              <%= 'false' %>
+              <% end %>
+        </td>
+        <td><%= link_to 'Progress Page', control_panel_show_path(user.url_hash) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>Create New User</p>
+<%= render 'user_form' %>
