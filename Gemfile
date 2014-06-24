@@ -24,6 +24,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'paperclip'
+gem 'aws-sdk'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
