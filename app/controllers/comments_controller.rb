@@ -1,5 +1,16 @@
 class CommentsController < ApplicationController
 
+
+def destroy
+  @comment = Comment.find(params[:id])
+  @post = Post.find(@comment.post_id)
+  @user = User.find(@post.user_id)
+  
+  @comment.destroy
+ 
+  redirect_to control_panel_show_path(@user.url_hash)
+end
+
 def index
   @comments = Comment.all
 end

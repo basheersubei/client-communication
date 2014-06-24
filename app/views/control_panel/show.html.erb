@@ -23,9 +23,12 @@
 
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
-            <%= comment.content %> <br/>
+            <%= comment.content %>  | 
+            <%= link_to 'Destroy', comment_path(comment),
+                    method: :delete, data: { confirm: 'Are you sure?' } %><br/>
             <% end %>
         </td>
+
 
         <td>
             <%= form_for :comment, :url => comments_path do |f| %>
