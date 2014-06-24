@@ -5,6 +5,7 @@
     <tr>
       <th>User ID</th>
       <th>User Name</th>
+      <th>User Email</th>
       <th>URL Hash</th>
       <th>Link to progress page</th>
     </tr>
@@ -15,6 +16,7 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.name %></td>
+        <td><%= user.email %></td>
         <td><%= user.url_hash %></td>
         <td><%= link_to 'Progress Page', control_panel_show_path(user.url_hash) %>
         </td>
