@@ -9,7 +9,7 @@
 
 users = User.create( 
   [ 
-    { name: 'FirstClient', url_hash: '90e26ff0d8731959fe913dc2952880ce' },
+    { name: 'FirstClient', url_hash: '90e26ff0d8731959fe913dc2952880ce', email: 'basheersubei@gmail.com' },
   ]
 )
 

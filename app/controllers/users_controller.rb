@@ -18,7 +18,9 @@ def create
   
   @user.save
 
-  ActionMailer::Base.mail(:from => "admin@we-are-phi.com", :to => "basheersubei@gmail.com", :subject => "test", :body => "test, check this: " + @user.url_hash).deliver
+  subject = "Welcome to Phi!"
+  body = "Check progress on your project and give us feedback at " + progress_url(@user.url_hash)
+  ActionMailer::Base.mail(:from => "admin@we-are-phi.com", :to => @user.email, :subject => subject, :body => body).deliver
 
   redirect_to control_panel_path
 end
@@ -26,7 +28,7 @@ end
 
 private
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :email)
   end
 
 end
