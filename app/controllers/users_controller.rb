@@ -20,7 +20,7 @@ def create
 
   subject = "Welcome to Phi!"
   body = "Check progress on your project and give us feedback at " + progress_url(@user.url_hash)
-  ActionMailer::Base.mail(:from => "admin@we-are-phi.com", :to => @user.email, :subject => subject, :body => body).deliver
+  ActionMailer::Base.mail(:from => ADMIN_EMAIL, :to => @user.email, :subject => subject, :body => body).deliver
 
   redirect_to control_panel_path
 end

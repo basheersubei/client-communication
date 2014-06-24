@@ -27,6 +27,13 @@ def create
 
   @post = Post.find(params[:comment][:post_id])
   @comment = @post.comments.create(comment_params)
+
+  @user = User.find(@post.user_id)
+
+	subject = "Project Notification from Phi!"  
+	body = "We've posted a new comment on Phi:\n" + @comment.content + " \nPlease check progress on your project and give us feedback at " + progress_url(@user.url_hash)
+	ActionMailer::Base.mail(:from => ADMIN_EMAIL, :to => @user.email, :subject => subject, :body => body).deliver
+	
   redirect_to control_panel_show_path(params[:comment][:url_hash])
 
 end
@@ -42,6 +49,10 @@ def feedback
   end
 
   @comment = @post.comments.create(comment_params)
+
+	subject = "Project Notification from Phi!"
+	body = "The client has added a comment on Phi:\n" + @comment.content + " \nPlease check progress at " + control_panel_show_url(@user.url_hash)
+  ActionMailer::Base.mail(:from => ADMIN_EMAIL, :to => ADMIN_EMAIL, :subject => subject, :body => body).deliver
 
   redirect_to progress_path(user_hash)
 end
