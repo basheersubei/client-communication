@@ -6,7 +6,9 @@
       <th>ID</th>
       <th>Title</th>
       <th>Content</th>
-      <th>Comment ID | Comment | Commenter</th>
+      <th>Comment ID | Comment</th>
+      <th> New Comment </th>
+
     </tr>
   </thead>
 
@@ -20,9 +22,33 @@
 
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
-            <%= comment.content %> |
-            <%= @user.name %> <br/>
+            <%= comment.content %> <br/>
             <% end %>
+        </td>
+
+        <td>
+            <%= form_for :comment, :url => comments_path do |f| %>
+            
+            <p>
+              Comment <%= f.label :content %><br>
+              <%= f.text_area :content %>
+            </p>
+
+
+
+            
+            <%= f.hidden_field :post_id, :value => post.id %>
+            
+
+            
+            <%= f.hidden_field :url_hash, :value => @user.url_hash %>
+            
+
+            <p>
+              <%= f.submit %>
+            </p>
+          <% end %>
+
         </td>
 
       </tr>

@@ -11,6 +11,15 @@ def new
 
 end
 
+
+def create
+
+  @post = Post.find(params[:comment][:post_id])
+  @comment = @post.comments.create(comment_params)
+  redirect_to control_panel_show_path(params[:comment][:url_hash])
+
+end
+
 def feedback
   @post = Post.find(params[:comment][:post_id])
 

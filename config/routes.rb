@@ -6,7 +6,7 @@ ClientCommunication::Application.routes.draw do
 
   get '/progress/:url_hash', to: 'posts#progress', as: 'progress'
   resources :posts
-  resources :comments, except: [:create]
+  resources :comments
   match 'feedback', to: 'comments#feedback', via: [:post]
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
