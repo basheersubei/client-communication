@@ -13,7 +13,8 @@ def update
   if @post.update(post_params)
     redirect_to control_panel_show_path(@user.url_hash)
   else
-    redirect_to post_path(@post)
+    # redirect_to post_path(@post)
+    render 'edit'
   end
 end
 
