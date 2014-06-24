@@ -25,7 +25,7 @@ posts = Post.create(
 
 comments = Comment.create(
 	[
-		{ post_id: 1, content: 'Lorem ipsum, you dumbass!' },
-		{ post_id: 2, content: 'Take a fu**ing english class, you dumbass!' }
+		{ post_id: 1, content: 'Lorem ipsum, you dumbass!', commenter: first_client.name },
+		{ post_id: 2, content: 'Take a fu**ing english class, you dumbass!', commenter: first_client.name }
 	]
 )
