@@ -17,6 +17,9 @@ def create
   @user.url_hash = SecureRandom.hex
   
   @user.save
+
+  ActionMailer::Base.mail(:from => "admin@we-are-phi.com", :to => "basheersubei@gmail.com", :subject => "test", :body => "test, check this: " + @user.url_hash).deliver
+
   redirect_to control_panel_path
 end
 
