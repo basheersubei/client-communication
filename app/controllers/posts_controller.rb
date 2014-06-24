@@ -1,5 +1,22 @@
 class PostsController < ApplicationController
 
+def edit
+  @post = Post.find(params[:id])
+  @user = User.find(@post.user_id)
+end
+
+def update
+  @post = Post.find(params[:id])
+  @user = User.find(@post.user_id)
+
+
+  if @post.update(post_params)
+    redirect_to control_panel_show_path(@user.url_hash)
+  else
+    redirect_to post_path(@post)
+  end
+end
+
 
 def destroy
   @post = Post.find(params[:id])
