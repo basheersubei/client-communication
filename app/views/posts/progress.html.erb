@@ -22,7 +22,7 @@
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
             <%= comment.content %> |
-            <%= @user.name %> <br/>
+            <%= comment.commenter %> <br/>
             <% end %>
         </td>
         
@@ -43,6 +43,7 @@
             
             <%= f.hidden_field :url_hash, :value => @user.url_hash %>
             
+            <%= f.hidden_field :commenter, value: @user.name %>
 
             <p>
               <%= f.submit %>

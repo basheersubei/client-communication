@@ -5,7 +5,7 @@ def destroy
   @comment = Comment.find(params[:id])
   @post = Post.find(@comment.post_id)
   @user = User.find(@post.user_id)
-  
+
   @comment.destroy
  
   redirect_to control_panel_show_path(@user.url_hash)
@@ -50,7 +50,7 @@ end
 
 private
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :commenter)
   end
 
 

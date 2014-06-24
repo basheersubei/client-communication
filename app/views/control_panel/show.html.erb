@@ -25,6 +25,7 @@
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
             <%= comment.content %>  | 
+            <%= comment.commenter %> |
             <%= link_to 'Destroy', comment_path(comment),
                     method: :delete, data: { confirm: 'Are you sure?' } %><br/>
             <% end %>
@@ -48,6 +49,8 @@
             
             <%= f.hidden_field :url_hash, :value => @user.url_hash %>
             
+            <%= f.hidden_field :commenter, value: ADMIN_NAME %>
+
 
             <p>
               <%= f.submit %>
