@@ -80,4 +80,18 @@ ClientCommunication::Application.configure do
 
   ENV['ADMIN_LOGIN']="admin"
   ENV['ADMIN_PASS']="ab72d9598a6d4c31c23e52252ace4c40"
+
+  
+config.action_mailer.delivery_method = :smtp
+
+ActionMailer::Base.smtp_settings = {
+  :address        => 'smtp.sendgrid.net',
+  :port           => '587',
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => 'heroku.com',
+  :enable_starttls_auto => true
+}
+
 end
