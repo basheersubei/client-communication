@@ -1,5 +1,15 @@
 class PostsController < ApplicationController
 
+
+def destroy
+  @post = Post.find(params[:id])
+  @user = User.find(@post.user_id)
+
+  @post.destroy
+ 
+  redirect_to control_panel_show_path(@user.url_hash)
+end
+
 def progress
 
   @user = User.find_by(url_hash: params[:url_hash])
