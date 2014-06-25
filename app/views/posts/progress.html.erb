@@ -6,6 +6,8 @@
       <th>ID</th>
       <th>Title</th>
       <th>Content</th>
+      <th>Attachment Photos</th>
+      <th>Timestamp</th>
       <th>Comment ID | Comment | Commenter</th>
       <th> New Comment </th>
     </tr>
@@ -17,16 +19,18 @@
         <td><%= post.id    %></td>
         <td><%= post.title %></td>
         <td><%= post.content %> 
-
-        | 
-
-        <% if post.updated_at > post.created_at %>
-          <%= 'last updated at ' + post.updated_at.to_s %>
+        <% if post.avatar.file? %>
+          <td><%= image_tag post.avatar.url(:thumb) %></td>
         <% else %>
-          <%= 'created at ' + post.created_at.to_s %>
+          <td>None</td>
+        <% end %>
+        
+        <% if post.updated_at > post.created_at %>
+          <td><%= 'last updated at ' + post.updated_at.to_s %>
+        <% else %>
+          <td><%= 'created at ' + post.created_at.to_s %>
         <% end %>
         </td>
-        
 
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
