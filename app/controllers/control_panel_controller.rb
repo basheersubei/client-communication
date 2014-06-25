@@ -12,7 +12,7 @@ def show
     redirect_to control_panel and return
   end
 
-  @posts = @user.posts
+  @posts = @user.posts.order('created_at ASC')
 
 end
 

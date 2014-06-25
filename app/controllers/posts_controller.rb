@@ -36,7 +36,7 @@ def progress
     redirect_to root_path and return
   end
 
-  @posts = @user.posts
+  @posts = @user.posts.order('created_at ASC') 
   # @comments = Comment.all
   # @users = User.all
 end
