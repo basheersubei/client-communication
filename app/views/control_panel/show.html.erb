@@ -7,7 +7,8 @@
       <th>Title</th>
       <th>Content</th>
       <th>Attachment Photos</th>
-      <th>Comment ID | Comment</th>
+      <th>Timestamp</th>
+      <th>Comment ID | Comment | Commenter</th>
       <th> New Comment </th>
 
     </tr>
@@ -24,14 +25,22 @@
         <% else %>
           <td>None</td>
         <% end %>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post_path(post),
+
+        <% if post.updated_at > post.created_at %>
+          <td><%= 'last updated at ' + post.updated_at.to_s %>
+        <% else %>
+          <td><%= 'created at ' + post.created_at.to_s %>
+        <% end %>
+
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Destroy', post_path(post),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
             <%= comment.content %>  | 
             <%= comment.commenter %> |
+            <%= 'created at ' + comment.created_at.to_s %> |
             <%= link_to 'Destroy', comment_path(comment),
                     method: :delete, data: { confirm: 'Are you sure?' } %><br/>
             <% end %>

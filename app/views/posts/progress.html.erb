@@ -16,13 +16,23 @@
       <tr>
         <td><%= post.id    %></td>
         <td><%= post.title %></td>
-        <td><%= post.content %></td>
+        <td><%= post.content %> 
+
+        | 
+
+        <% if post.updated_at > post.created_at %>
+          <%= 'last updated at ' + post.updated_at.to_s %>
+        <% else %>
+          <%= 'created at ' + post.created_at.to_s %>
+        <% end %>
+        </td>
         
 
         <td><% post.comments.each do |comment| %>
             <%= comment.id      %> | 
             <%= comment.content %> |
-            <%= comment.commenter %> <br/>
+            <%= comment.commenter %> |
+            <%= 'created at ' + comment.created_at.to_s %><br/>
             <% end %>
         </td>
         
