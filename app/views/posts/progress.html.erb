@@ -19,8 +19,8 @@
         <td><%= post.id    %></td>
         <td><%= post.title %></td>
         <td><%= post.content %> 
-        <% if post.avatar.file? %>
-          <td><%= image_tag post.avatar.url(:thumb) %></td>
+        <% if post.photo.file? %>
+          <td><%= image_tag post.photo.url(:thumb) %></td>
         <% else %>
           <td>None</td>
         <% end %>

@@ -20,8 +20,8 @@
         <td><%= post.id    %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        <% if post.avatar.file? %>
-          <td><%= image_tag post.avatar.url(:thumb) %></td>
+        <% if post.photo.file? %>
+          <td><%= image_tag post.photo.url(:thumb) %></td>
         <% else %>
           <td>None</td>
         <% end %>
@@ -94,7 +94,7 @@
   </p>
 
   <p>
-    <%= f.file_field :avatar %>
+    <%= f.file_field :photo %>
   </p>
   
   <%= f.hidden_field :url_hash, :value => @user.url_hash %>
