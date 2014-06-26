@@ -61,7 +61,7 @@ end
 
 private
   def comment_params
-    params.require(:comment).permit(:content, :commenter)
+    params.require(:comment).permit(:content, :commenter, :photo)
   end
 
 

@@ -8,7 +8,7 @@
       <th>Content</th>
       <th>Attachment Photos</th>
       <th>Timestamp</th>
-      <th>Comment ID | Comment | Commenter</th>
+      <th>Comment ID | Comment | Commenter | Comment Photo Attachment</th>
       <th> New Comment </th>
 
     </tr>
@@ -40,6 +40,13 @@
             <%= comment.id      %> | 
             <%= comment.content %>  | 
             <%= comment.commenter %> |
+            
+            <% if comment.photo.file? %>
+              <%= image_tag comment.photo.url(:thumb) %>
+            <% else %>
+              None
+            <% end %>
+             |
             <%= 'created at ' + comment.created_at.to_s %> |
             <%= link_to 'Destroy', comment_path(comment),
                     method: :delete, data: { confirm: 'Are you sure?' } %><br/>
@@ -55,8 +62,9 @@
               <%= f.text_area :content %>
             </p>
 
-
-
+            <p>
+              <%= f.file_field :photo %>
+            </p>
             
             <%= f.hidden_field :post_id, :value => post.id %>
             

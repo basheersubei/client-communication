@@ -36,6 +36,13 @@
             <%= comment.id      %> | 
             <%= comment.content %> |
             <%= comment.commenter %> |
+                        
+            <% if comment.photo.file? %>
+              <%= image_tag comment.photo.url(:thumb) %>
+            <% else %>
+              None
+            <% end %>
+             |
             <%= 'created at ' + comment.created_at.to_s %><br/>
             <% end %>
         </td>
@@ -48,7 +55,9 @@
               <%= f.text_area :content %>
             </p>
 
-
+            <p>
+              <%= f.file_field :photo %>
+            </p>
 
             
             <%= f.hidden_field :post_id, :value => post.id %>
