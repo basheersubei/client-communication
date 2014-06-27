@@ -3,5 +3,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :url_hash, presence: true, uniqueness: true
-
+  validates :email, presence: true
+  
 end
