@@ -1,3 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Phi Progress Page</title>
+    <meta name="description" content="Blueprint: Vertical Timeline" />
+    <meta name="keywords" content="timeline, vertical, layout, style, component, web development, template, responsive" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="default.css" />
+    <link rel="stylesheet" type="text/css" href="component.css" />
+    <script src="modernizr.custom.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="clearfix">
+        <span>Phi</span>
+        <h1>Progress Page</h1>
+      </header> 
+      <div class="main">
+        <ul class="cbp_tmtimeline">
+
+        <% @posts.each do |post| %>
+            <% if post.updated_at > post.created_at %>
+              <% date = post.updated_at %>
+            <% else %>
+              <% date = post.created_at %>
+            <% end %>
+            <li>
+              <time class="cbp_tmtime" datetime="<%= date.to_s %>" >
+                <span><%= date.strftime("%d/%m/%y") %></span> 
+                <span><%= date.to_formatted_s(:time) %></span>
+              </time>
+              <div class="cbp_tmlabel">
+                <h2><%= post.title %></h2>
+                <p><%= post.content %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
 <h1>Listing posts</h1>
 
 <table>
@@ -82,3 +130,4 @@
 
 <br>
 
+-->
