@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Phi Progress Page</title>
-    <meta name="description" content="Blueprint: Vertical Timeline" />
-    <meta name="keywords" content="timeline, vertical, layout, style, component, web development, template, responsive" />
-    <meta name="author" content="Codrops" />
+    <meta name="description" content="Phi Progress Page" />
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" type="text/css" href="default.css" />
     <link rel="stylesheet" type="text/css" href="component.css" />
@@ -35,7 +33,12 @@
               </time>
               <div class="cbp_tmlabel">
                 <h2><%= post.title %></h2>
-                <p><%= post.content %></p>
+                <p><%= post.content %> <br><br>             
+                  <% if post.photo.file? %>
+                    Photo attachment: <br>
+                    <%= image_tag post.photo.url(:thumb) %>
+                  <% end %>
+                </p>
               </div>
             </li>
           <% end %>
