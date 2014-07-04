@@ -41,14 +41,29 @@
                   <% end %>
                 </p>
 
-                <p>
-                  <% post.comments.each do |comment| %>
+                
+                <% post.comments.each do |comment| %>
+                  <p>
                     On <%= comment.created_at.strftime("%d/%m/%y") + " at " + comment.created_at.to_formatted_s(:time) %>, <%= comment.commenter %> said:<br>
                     <%= comment.content %>
                                 
                     <% if comment.photo.file? %>
                       <%= image_tag comment.photo.url(:thumb) %>
                     <% end %>
+                  </p>
+                <% end %>
+              
+                <p>
+                  Add a comment:
+                  <%= form_for :comment, :url => feedback_path do |f| %>
+
+                  <%= f.text_area :content %><br>
+                  <%= f.file_field :photo %><br>
+                  <%= f.hidden_field :post_id, :value => post.id %>
+                  <%= f.hidden_field :url_hash, :value => @user.url_hash %>
+                  <%= f.hidden_field :commenter, value: @user.name %>
+                  <%= f.submit %>
+
                   <% end %>
                 </p>
               </div>
