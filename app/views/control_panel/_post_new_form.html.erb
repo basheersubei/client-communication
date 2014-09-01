@@ -1,0 +1,24 @@
+
+<%= form_for :post, url: posts_path, :html => { :multipart => true }  do |f| %>
+  <p>
+    Post <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    Post <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+
+  <p>
+    <%= f.file_field :photo %>
+  </p>
+  
+  <%= f.hidden_field :url_hash, :value => @user.url_hash %>
+
+  <%= f.hidden_field :user_id, :value => @user.id %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
