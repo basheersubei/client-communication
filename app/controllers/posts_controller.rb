@@ -11,6 +11,9 @@ def update
 
 
   if @post.update(post_params)
+    subject = "Project Notification from Phi!"
+    body = "We've edited a post on Phi:\n" + @post.content + " \nPlease check progress on your project and give us feedback at " + progress_url(@user.url_hash)
+    ActionMailer::Base.mail(:to => @user.email, :subject => subject, :body => body).deliver
     redirect_to control_panel_show_path(@user.url_hash)
   else
     # redirect_to post_path(@post)
