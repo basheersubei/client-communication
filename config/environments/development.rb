@@ -30,14 +30,36 @@ ClientCommunication::Application.configure do
   ENV['ADMIN_LOGIN']="dhh"
   ENV['ADMIN_PASS']="d2e3450fad5cd22710ea854814378d59"
 
-  Paperclip.options[:command_path] = "/usr/bin/"
+  Paperclip.options[:command_path] = "/usr/bin/convert"
+  
+  # config.action_mailer.delivery_method = :smtp
 
-  config.paperclip_defaults = {
-  :storage => :s3,
-  :s3_credentials => {
-    :bucket => ENV['S3_BUCKET_NAME'],
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-  }
-}
+  # config.action_mailer.smtp_settings = {
+  #   :address => "mail.we-are-phi.com",
+  #  # :port => 25,
+  #   :domain => "we-are-phi.com",
+  #   :authentication => :login,
+  #   :user_name => ENV['admin_email'],
+  #   :password => ENV['admin_email_password'],
+  # }
+
+  config.action_mailer.delivery_method = :sendmail
+# Defaults to:
+# config.action_mailer.sendmail_settings = {
+#   location: '/usr/sbin/sendmail',
+#   arguments: '-i -t'
+# }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'do-not-reply@we-are-phi.com'}
+
+
+#   config.paperclip_defaults = {
+#   :storage => :s3,
+#   :s3_credentials => {
+#     :bucket => ENV['S3_BUCKET_NAME'],
+#     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+#     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+#   }
+# }
 end
