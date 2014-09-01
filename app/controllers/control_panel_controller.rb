@@ -9,7 +9,7 @@ def show
   @user = User.find_by(url_hash: params[:url_hash])
   
   if @user == nil
-    redirect_to control_panel and return
+    redirect_to control_panel_path and return
   end
 
   @posts = @user.posts.order('created_at ASC')

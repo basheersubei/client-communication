@@ -14,6 +14,15 @@ def update
   end
 end
 
+def destroy
+  if @user = User.find(params[:id])
+    @user.destroy
+    redirect_to control_panel_path
+  else
+    redirect_to users_path
+  end
+end
+
 def index
   @users = User.all
 end
