@@ -26,7 +26,7 @@
             <li>
               <time class="cbp_tmtime" datetime="<%= date.to_s %>" >
                 <span><%= date.strftime("%d/%m/%y") %></span> 
-                <span><%= date.to_formatted_s(:time) %></span>
+                <span><%= date.strftime("%I:%M %p") %></span>
               </time>
               <div class="cbp_tmlabel">
                 <h2><%= post.title %></h2>
@@ -43,7 +43,7 @@
                 
                 <% post.comments.each do |comment| %>
                   <p>
-                    On <%= comment.created_at.strftime("%d/%m/%y") + " at " + comment.created_at.to_formatted_s(:time) %>, <%= comment.commenter %> said:<br>
+                    On <%= comment.created_at.strftime("%d/%m/%y") + " at " + comment.created_at.strftime("%I:%M %p") %>, <%= comment.commenter %> said:<br>
                     <%= comment.content %>
                                 
                     <% if comment.photo.file? %>
