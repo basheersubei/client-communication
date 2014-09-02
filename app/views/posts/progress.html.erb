@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Phi Progress Page</title>
-    <meta name="description" content="Phi Progress Page" />
-    <link rel="shortcut icon" href="../favicon.ico">
-  </head>
-  <body>
-    <div class="container">
-      <header class="clearfix">
-        <span>Phi</span>
-        <h1>Progress Page</h1>
-      </header> 
-      <div class="main">
-        <ul class="cbp_tmtimeline">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Phi Progress Page</title>
+  <meta name="description" content="Phi Progress Page" />
+  <link rel="shortcut icon" href="../favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <header class="clearfix">
+      <span>Phi</span>
+      <h1>Progress Page</h1>
+    </header> 
+    <div class="main">
+      <ul class="cbp_tmtimeline">
 
         <% @posts.each do |post| %>
-            <% if post.updated_at > post.created_at %>
-              <% date = post.updated_at %>
-            <% else %>
-              <% date = post.created_at %>
-            <% end %>
-            <li>
-              <time class="cbp_tmtime" datetime="<%= date.to_s %>" >
-                <span><%= date.strftime("%d/%m/%y") %></span> 
-                <span><%= date.strftime("%I:%M %p") %></span>
-              </time>
-              <div class="cbp_tmlabel">
-                <h2><%= post.title %></h2>
-                <p><%= post.content %></p>
-                
-                <% if post.photo.file? %>
-                  <p>
-                    Photo attachment: <br>
-                    <%= image_tag post.photo.url(:thumb) %>
-                  </p>
+          <% if post.updated_at > post.created_at %>
+            <% date = post.updated_at %>
+          <% else %>
+            <% date = post.created_at %>
+          <% end %>
+          <li>
+            <time class="cbp_tmtime" datetime="<%= date.to_s %>" >
+              <span><%= date.strftime("%d/%m/%y") %></span> 
+              <span><%= date.strftime("%I:%M %p") %></span>
+            </time>
+            <div class="cbp_tmlabel">
+              <h2><%= post.title %></h2>
+              <p><%= post.content %></p>
 
-                <% end %>
-
-                
-                <% post.comments.each do |comment| %>
-                  <p>
-                    On <%= comment.created_at.strftime("%d/%m/%y") + " at " + comment.created_at.strftime("%I:%M %p") %>, <%= comment.commenter %> said:<br>
-                    <%= comment.content %>
-                                
-                    <% if comment.photo.file? %>
-                      <br>
-                      <%= image_tag comment.photo.url(:thumb) %>
-                    <% end %>
-                  </p>
-                <% end %>
-              
+              <% if post.photo.file? %>
                 <p>
-                  Add a comment:
-                  <%= form_for :comment, :url => feedback_path do |f| %>
+                  Photo attachment: <br>
+                  <%= image_tag post.photo.url(:thumb) %>
+                </p>
+
+              <% end %>
+
+
+              <% post.comments.each do |comment| %>
+                <p>
+                  On <%= comment.created_at.strftime("%d/%m/%y") + " at " + comment.created_at.strftime("%I:%M %p") %>, <%= comment.commenter %> said:<br>
+                  <%= comment.content %>
+
+                  <% if comment.photo.file? %>
+                    <br>
+                    <%= image_tag comment.photo.url(:thumb) %>
+                  <% end %>
+                </p>
+              <% end %>
+
+              <p>
+                Add a comment:
+                <%= form_for :comment, :url => feedback_path do |f| %>
 
                   <%= f.text_area :content %><br>
                   <%= f.file_field :photo %><br>
@@ -64,100 +64,13 @@
                   <%= f.hidden_field :commenter, value: @user.name %>
                   <%= f.submit %>
 
-                  <% end %>
-                </p>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+                <% end %>
+              </p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
-  </body>
+  </div>
+</body>
 </html>
-
-<!--
-<h1>Listing posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Attachment Photos</th>
-      <th>Timestamp</th>
-      <th>Comment ID | Comment | Commenter</th>
-      <th> New Comment </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.id    %></td>
-        <td><%= post.title %></td>
-        <td><%= post.content %> 
-        <% if post.photo.file? %>
-          <td><%= image_tag post.photo.url(:thumb) %></td>
-        <% else %>
-          <td>None</td>
-        <% end %>
-        
-        <% if post.updated_at > post.created_at %>
-          <td><%= 'last updated at ' + post.updated_at.to_s %>
-        <% else %>
-          <td><%= 'created at ' + post.created_at.to_s %>
-        <% end %>
-        </td>
-
-        <td><% post.comments.each do |comment| %>
-            <%= comment.id      %> | 
-            <%= comment.content %> |
-            <%= comment.commenter %> |
-                        
-            <% if comment.photo.file? %>
-              <%= image_tag comment.photo.url(:thumb) %>
-            <% else %>
-              None
-            <% end %>
-             |
-            <%= 'created at ' + comment.created_at.to_s %><br/>
-            <% end %>
-        </td>
-        
-        <td>
-            <%= form_for :comment, :url => feedback_path do |f| %>
-            
-            <p>
-              Comment <%= f.label :content %><br>
-              <%= f.text_area :content %>
-            </p>
-
-            <p>
-              <%= f.file_field :photo %>
-            </p>
-
-            
-            <%= f.hidden_field :post_id, :value => post.id %>
-            
-
-            
-            <%= f.hidden_field :url_hash, :value => @user.url_hash %>
-            
-            <%= f.hidden_field :commenter, value: @user.name %>
-
-            <p>
-              <%= f.submit %>
-            </p>
-          <% end %>
-
-        </td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
--->
