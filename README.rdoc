@@ -31,3 +31,5 @@ Notes:
 * This app has been tested using ruby 2.1.2p95 and rails 4.0.5.
 * There is currently no test suite, but the app is too small to need one.
 * Photo attachments are saved locally in the current Paperclip configuration.
+* This app uses a CSS theme called VerticalTimeline[http://tympanus.net/codrops/2013/05/02/vertical-timeline/] for the user's
+  project page. It's pretty much a fancy-looking responsive table that we took and modified.
