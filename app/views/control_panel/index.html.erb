@@ -7,6 +7,8 @@
       <th>User Name</th>
       <th>User Email</th>
       <th>URL Hash</th>
+      <th>Project Deadline</th>
+      <th>Project Name</th>
       <th>Link to progress page</th>
     </tr>
   </thead>
@@ -18,6 +20,8 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.url_hash %></td>
+        <td><%= user.project_deadline.strftime("%d/%m/%y") %></td>
+        <td><%= user.project_name %></td>
         <td><%= link_to 'Progress Page', control_panel_show_path(user.url_hash) %>
         </td>
       </tr>

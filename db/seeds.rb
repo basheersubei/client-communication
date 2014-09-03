@@ -9,7 +9,7 @@
 
 users = User.create( 
   [ 
-    { name: 'FirstClient', url_hash: '90e26ff0d8731959fe913dc2952880ce', email: 'basheersubei@gmail.com' },
+    { name: 'FirstClient', url_hash: '90e26ff0d8731959fe913dc2952880ce', email: 'basheersubei@gmail.com', project_deadline: DateTime.civil_from_format(:local, 2015, 12, 17), project_name: 'MyAwesomeProject' },
   ]
 )
 
