@@ -36,7 +36,7 @@ def progress
   @user = User.find_by(url_hash: params[:url_hash])
   
   if @user == nil
-    redirect_to root_path and return
+    redirect_to 'http://we-are-phi.com/' and return
   end
 
   @posts = @user.posts.order('created_at ASC') 
