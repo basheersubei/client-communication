@@ -19,7 +19,8 @@
     <div class="main">
       <ul class="cbp_tmtimeline">
 
-        <% @posts.each do |post| %>
+        <% @posts.each_with_index do |post, index| %>
+        Update: <%= index %>
           <% if post.updated_at > post.created_at %>
             <% date = post.updated_at %>
           <% else %>
