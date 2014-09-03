@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ClientCommunication::Application.config.secret_key_base = 'a2f3089e983dfc5f85bf6be4c2781e854ec5a7bc7dcc689d29315f11754ea2dce74599618ea140b70ee9c9e3c9ddb2ca42641e1049bef17f6a1d449e9d50408f'
+ClientCommunication::Application.config.secret_key_base = if Rails.env.development? or Rails.env.test?
+  ('x' * 30) # meets minimum requirement of 30 chars long
+else
+  ENV['SECRET_TOKEN']
+end
