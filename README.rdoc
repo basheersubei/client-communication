@@ -1,28 +1,33 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This simple application allows an admin (credentials set in environment config) to create users. Each user has a 
+progress page dedicated to them, displaying posts (that the admin creates) and comments on each 
+post (both admin and user can comment).
 
-Things you may want to cover:
+The application is meant to be used to give a way for clients to communicate with us (a web development company they hired) 
+and check on updates. The admin would create a user (for a certain project, website, or whatever), and they would then 
+create posts (status updates, mockups, etc.) which the user (client) could navigate to and comment on these posts. A single
+photo attachment can be attached to each post or comment.
 
-* Ruby version
+The user doesn't need to authenticate to visit their project page (which has a long URL hash as part of it), while any 
+other page (which is only meant for the admin, anyways) needs admin credentials.
 
-* System dependencies
+The admin can visit the control_panel page, create new users, view existing users, visit their project pages, and create
+new posts or comments on said project pages. Email notifications are sent to either admin or user upon post or comment
+creation.
 
-* Configuration
+Installation instructions:
 
-* Database creation
+* This app has been deployed on an Ubuntu machine running Apache2 with Passenger Phusion. Just get LAMP running, then
+  install and configure Passenger Phusion[https://www.phusionpassenger.com/documentation/Users%20guide%20Apache.html]
+  to make sure it points Apache to your Rails app directory.
+* This app use Paperclip[https://github.com/thoughtbot/paperclip] for attaching photos, so you will need to install 
+  ImageMagick and configure Paperclip in this app's environment config file.
+* You will need to install and configure Postfix (or some other smtp mail thingamajig) for email notification.
 
-* Database initialization
+Notes:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* DB scheme used is SQLite3, because this is just simpler and we expect extremely light traffic.
+* This app has been tested using ruby 2.1.2p95 and rails 4.0.5.
+* There is currently no test suite, but the app is too small to need one.
+* Photo attachments are saved locally in the current Paperclip configuration.
