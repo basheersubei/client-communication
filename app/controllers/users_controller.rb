@@ -50,7 +50,7 @@ end
 
 private
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :project_deadline, :project_name)
   end
 
 end

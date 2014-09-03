@@ -7,6 +7,9 @@
       <th>User Name</th>
       <th>User Email</th>
       <th>URL Hash</th>
+      <th>Project Deadline</th>
+      <th>Project Name</th>
+
     </tr>
   </thead>
 
@@ -17,6 +20,8 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.url_hash %></td>
+        <td><%= user.project_deadline.strftime("%d/%m/%y") %></td>
+        <td><%= user.project_name %></td>
         <td><%= link_to 'Delete', user_path(user.id), :confirm => "Are you sure you want to delete #{user.name}?", :method => :delete %></td>
         <td><%= link_to 'Edit', edit_user_path(user.id) %></td>
       </tr>
