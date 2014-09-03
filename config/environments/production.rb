@@ -78,9 +78,6 @@ ClientCommunication::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  ENV['ADMIN_LOGIN']="admin"
-  ENV['ADMIN_PASS']="ab72d9598a6d4c31c23e52252ace4c40"
- 
   Paperclip.options[:command_path] = "/usr/bin/convert"
   
   # config.action_mailer.delivery_method = :smtp
