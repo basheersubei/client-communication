@@ -12,7 +12,7 @@
 
 		// skelJS
 			skelJS: {
-				prefix: '/client-comm/app/assets/stylesheets/style',
+				prefix: '/client-comm/assets/stylesheets/style',
 				resetCSS: true,
 				boxModel: 'border',
 				containers: 1200,
