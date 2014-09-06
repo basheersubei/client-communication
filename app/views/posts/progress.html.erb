@@ -1,79 +1,130 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Phi Progress Page</title>
-  <meta name="description" content="Phi Progress Page" />
-  <link rel="shortcut icon" href="../favicon.ico">
-</head>
-<body>
-  <div class="container">
-    <header class="clearfix">
-      <span>Phi</span>
-      <h1>Progress Page</h1>
-    </header> 
-    <h2>Project Name: <%= @user.project_name %> </h2>
-    <h2>Project Deadline: <%= @user.project_deadline.strftime("%d/%m/%y") %> </h2>
-    <div class="main">
-      <ul class="cbp_tmtimeline">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Phi Progress Page</title>
+    <meta name="description" content="Phi Progress Page" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <script type="text/javascript" src="/client-comm/assets/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/client-comm/assets/javascripts/skel.js"></script>
+    <script type="text/javascript" src="/client-comm/assets/javascripts/init.js"></script>
+  </head>
+  <body>
+    <section class="main">
+      <header>
+        <div class="container">
+          <div class="row">
+            <div class="12u">
+              <section>
+                <header>
+                  <img src="/client-comm/assets/images/phi_logo_blue.png" id="logo">
+                  <h1><strong>Phi</strong> Status Updates</h1>
+                  <h2><strong>Project Name:</strong> <%= @user.project_name %><strong>&emsp;|&emsp;Project Deadline:</strong> <%= @user.project_deadline.strftime("%d/%m/%y") %></h2>
+                </header>
+              </section>
+            </div>
+          </div>
+        </div>
+      </header>
+    </section>
 
+    <section class="main align-left">
+      <div class="container">
         <% @posts.each_with_index do |post, index| %>
-        Update: <%= index %>
           <% if post.updated_at > post.created_at %>
             <% date = post.updated_at %>
           <% else %>
             <% date = post.created_at %>
           <% end %>
-          <li>
-            <time class="cbp_tmtime" datetime="<%= date.to_s %>" >
-              <span><%= date.strftime("%d/%m/%y") %></span> 
-              <span><%= date.strftime("%I:%M %p") %></span>
-            </time>
-            <div class="cbp_tmlabel">
-              <h2><%= post.title %></h2>
-              <p><%= post.content %></p>
+          <div class="row">
 
-              <% if post.photo.file? %>
-                <p>
-                  Photo attachment: <br>
-                  <%= image_tag post.photo.url(:thumb) %>
-                </p>
-
-              <% end %>
-
-
-              <% post.comments.each do |comment| %>
-                <p>
-                  On <%= comment.created_at.strftime("%d/%m/%y") + " at " + comment.created_at.strftime("%I:%M %p") %>, <%= comment.commenter %> said:<br>
-                  <%= comment.content %>
-
-                  <% if comment.photo.file? %>
-                    <br>
-                    <%= image_tag comment.photo.url(:thumb) %>
-                  <% end %>
-                </p>
-              <% end %>
-
-              <p>
-                Add a comment:
-                <%= form_for :comment, :url => feedback_path do |f| %>
-
-                  <%= f.text_area :content %><br>
-                  <%= f.file_field :photo %><br>
-                  <%= f.hidden_field :post_id, :value => post.id %>
-                  <%= f.hidden_field :url_hash, :value => @user.url_hash %>
-                  <%= f.hidden_field :commenter, value: @user.name %>
-                  <%= f.submit %>
-
-                <% end %>
-              </p>
+            <div class="2u align-right">
+              <section>
+                <header>
+                  <time datetime="<%= date.to_s %>" >
+                    <span><%= date.strftime("%d/%m/%y") %></span> 
+                    <h2><strong><%= date.strftime("%I:%M %p") %></strong></h2>
+                  </time>
+                </header>
+              </section>
             </div>
-          </li>
+
+            <div class="10u">
+              <section>
+
+                <header class="post-title">
+                  <h1><strong><%= post.title %></strong></h1>
+                </header>
+
+                <div class="row spacer">
+                  <div class="12u">
+                    <p><%= post.content %></p>
+
+                    <% if post.photo.file? %>
+                      <p>
+                        Photo attachment: <br>
+                        <%= image_tag post.photo.url(:original) %>
+                      </p>
+
+                    <% end %>
+                  </div> 
+                </div>
+
+                <header>
+                  <h2><strong>Comments:</strong></h2>
+                </header>
+
+                <% post.comments.each do |comment| %>
+                <div class="row">
+                  <div class="2u">
+                    <h2>
+                      <%= comment.commenter %>
+                    </h2>
+                    <p class="small">
+                      <%= comment.created_at.strftime("%d/%m/%y") %><br>
+                      <%= comment.created_at.strftime("%I:%M %p") %>
+                    </p>
+                  </div> 
+
+                  <div class="10u">
+                    <p>
+                      <%= comment.content %>
+
+                      <% if comment.photo.file? %>
+                        <br>
+                        <%= image_tag comment.photo.url(:original) %>
+                      <% end %>
+                    </p>
+                  </div> 
+                </div>
+                <% end %>
+
+                <div class="row">
+                  <div class="12u">
+                    <span>
+                      <h2><strong>Reply:</strong></h2>
+                      <%= form_for :comment, :url => feedback_path do |f| %>
+
+                        <%= f.text_area :content %><br>
+                        <span class="align-right">
+                          <%= f.file_field :photo %>
+                          <%= f.hidden_field :post_id, :value => post.id %>
+                          <%= f.hidden_field :url_hash, :value => @user.url_hash %>
+                          <%= f.hidden_field :commenter, value: @user.name %>
+                          <%= f.submit %>
+                        </span>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+
+              </section>
+            </div> <!--10u-->
+          </div><!--row-->
         <% end %>
-      </ul>
-    </div>
-  </div>
-</body>
+      </div> <!--container-->
+    </section> <!--main-->
+  </body>
 </html>

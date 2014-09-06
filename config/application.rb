@@ -30,5 +30,6 @@ module ClientCommunication
 
     # fixes `hostname "localhost" does not match the server certificate` error
     config.action_mailer.smtp_settings = { enable_starttls_auto: false  }
+    config.assets.enabled = false
   end
 end

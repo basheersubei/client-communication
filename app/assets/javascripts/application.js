@@ -11,6 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
+//= require skel
+//= require init
 //= require_tree .
