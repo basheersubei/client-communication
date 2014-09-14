@@ -22,7 +22,7 @@ def new
 
 end
 
-
+# this is where the admin creates a comment from the control_panel view
 def create
 
   @post = Post.find(params[:comment][:post_id])
@@ -38,6 +38,7 @@ def create
 
 end
 
+# this is where the client creates a new comment as feedback (from progress view)
 def feedback
   @post = Post.find(params[:comment][:post_id])
 
@@ -45,7 +46,7 @@ def feedback
   @user = User.find_by(url_hash: user_hash)
   
   if @user == nil
-    redirect_to root_path and return
+    redirect_to 'http://we-are-phi.com/' and return
   end
 
   @comment = @post.comments.create(comment_params)
@@ -61,7 +62,7 @@ end
 
 private
   def comment_params
-    params.require(:comment).permit(:content, :commenter, :photo)
+    params.require(:comment).permit(:content, :commenter, :photo, :post_id)
   end
 
 
